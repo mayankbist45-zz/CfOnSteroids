@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CF ON STEROIDS</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <p id="heading"><u><strong>CF ON STEROIDS</strong></u></p>
+    <form id="bloodyForm">
+        <div class="form-group">
+            <input type="text" class="form-control form-control-sm" id="handle" placeholder="Codeforces Handle"
+                required>
+        </div>
+        <div class="form-group">
+            <input type="number" class="form-control form-control-sm" id="rating" placeholder="Rating" required>
+        </div>
+        <div class="form-group">
+            <input type="number" class="form-control form-control-sm" id="contribution" placeholder="Contribution">
+        </div>
+        <div class="form-group">
+            <select class="form-control form-control-sm" id="role" required>
+                <option style="display:none" disabled selected value> -- Select a Role -- </option>
+                <option>Headquarters</option>
+                <option>Unrated</option>
+                <option>Newbie</option>
+                <option>Pupil</option>
+                <option>Specialist</option>
+                <option>Expert</option>
+                <option>Candidate Master</option>
+                <option>Master</option>
+                <option>International Master</option>
+                <option>Grandmaster</option>
+                <option>International Grandmaster</option>
+                <option>Legendary Grandmaster</option>
+            </select>
+        </div>
+        <button id="submitButton" class="btn btn-primary btn-sm">Submit</button>
+        <button id="resetButton" class="btn btn-warning btn-sm">Reset</button>
+    </form>
+    <script src="popper.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+{
+    "name": "CF ON STEROIDS",
+    "description": "It enhances the Codeforces user profile according to selected options locally",
+    "version": "1.0.0",
+    "browser_action": {
+        "default_popup": "steroids.html",
+        "default_icon": "hello_extensions.png"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "http://codeforces.com/*",
+                "https://codeforces.com/*"
+            ],
+            "exclude_globs": [
+                "*://codeforces.com/contests/with/*"
+            ],
+            "js": [
+                "script.js"
+            ],
+            "all_frames":true
+        }
+    ],
+    "permissions": ["tabs", "storage"],
+    "commands": {
+        "_execute_browser_action": {
+            "suggested_key": {
+                "default": "Ctrl+Shift+F",
+                "mac": "MacCtrl+Shift+F"
+            },
+            "description": "Opens steroids.html"
+        }
+    },
+    "manifest_version": 2
+}
