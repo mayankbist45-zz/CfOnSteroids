@@ -4,7 +4,15 @@
     "version": "1.0.0",
     "browser_action": {
         "default_popup": "steroids.html",
-        "default_icon": "ico64px.png"
+        "default_icon": "ico64.png"
+    },
+    "icons": {
+        "16": "ico16.png",
+        "48": "ico48.png",
+        "64": "ico64.png",
+        "128": "ico128.png",
+        "256": "ico256.png",
+        "512": "ico512.png"
     },
     "content_scripts": [
         {
@@ -18,10 +26,13 @@
             "js": [
                 "script.js"
             ],
-            "all_frames":true
+            "all_frames": true
         }
     ],
-    "permissions": ["tabs", "storage"],
+    "permissions": [
+        "tabs",
+        "storage"
+    ],
     "commands": {
         "_execute_browser_action": {
             "suggested_key": {
