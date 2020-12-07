@@ -4,7 +4,7 @@
     "version": "1.0.0",
     "browser_action": {
         "default_popup": "steroids.html",
-        "default_icon": "hello_extensions.png"
+        "default_icon": "ico64px.png"
     },
     "content_scripts": [
         {

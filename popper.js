@@ -8,7 +8,6 @@ params = {
   currentWindow: true,
 };
 function magic() {
-  console.log("clicked the motherfucker");
   let now = document.getElementsByTagName("input");
   let msg = {};
   for (let i = 0; i < now.length; i++) {
