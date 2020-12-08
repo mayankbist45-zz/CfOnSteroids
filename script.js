@@ -1,10 +1,11 @@
 chrome.storage.sync.get(
-  ["haveData", "rating", "handle", "role"],
+  ["haveData", "rating", "handle", "role", "contribution"],
   function (result) {
     if (result.haveData) {
       handle = result.handle;
       rating = result.rating;
       role = result.role;
+      contribution = result.contribution;
       changeColorAndRole();
     }
   }
@@ -38,7 +39,9 @@ function gotMessage(message, sender, sendResponse) {
   handle = message.handle;
   rating = message.rating;
   role = message.role;
-  if (message.contribution.length) contribution = message.contribution;
+  contribution = message.contribution;
+  if(contribution.length && Number(contribution[0]) != NaN)
+    contribution = '+' + contribution;
   console.log("contribution", contribution);
 
   chrome.storage.sync.set(
@@ -65,11 +68,10 @@ function makeThat(ele) {
   ele.classList.add(Entities[role]);
 }
 
-function trim(curhandle){
+function trim(curhandle) {
   let id = 0;
-  for(let i = 0; i < curhandle.length; i++){
-    if(curhandle[i] == ' ')
-      id = i + 1;
+  for (let i = 0; i < curhandle.length; i++) {
+    if (curhandle[i] == " ") id = i + 1;
   }
   curhandle = curhandle.substr(id);
   return curhandle;
@@ -89,12 +91,13 @@ function changeColorAndRole() {
   }
   let childs = document.getElementsByClassName("propertyLinks")[0].children;
   childs[0].children[1].innerHTML = rating;
+  if (contribution != undefined && contribution.length) childs[1].children[1].innerHTML = contribution;
   makeThat(childs[0].children[1]);
 
   let tempData = document.getElementsByClassName("main-info");
   if (
     tempData.length &&
-    trim(tempData[0].children[1].children[0].getAttribute('title')) == handle
+    trim(tempData[0].children[1].children[0].getAttribute("title")) == handle
   ) {
     let userData = document.getElementsByClassName("user-rank");
     for (let i = 0; i < userData.length; i++) {
@@ -112,6 +115,10 @@ function changeColorAndRole() {
       pointer = userInfo[i].children[1].children[0].children[2].children[1];
       pointer.innerText = rating;
       makeThat(pointer);
+
+      if(contribution != undefined && contribution.length){
+        pointer = userInfo[i].children[1].children[1].children[1].innerHTML = contribution;
+      } 
     }
   }
 }
