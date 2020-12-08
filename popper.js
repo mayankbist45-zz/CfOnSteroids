@@ -1,8 +1,3 @@
-// document.addEventListener("DOMContentLoaded", function () {
-//   let button = document.getElementByClassName("btn");
-//   button.addEventListener("click", magic);
-// });
-
 params = {
   active: true,
   currentWindow: true,
@@ -24,12 +19,31 @@ function magic() {
   }
 }
 
+function doReset() {
+  document.getElementById("bloodyForm").style.display = "none";
+  document.getElementById("resetButton").style.display = "none";
+  document.getElementById("message").style.display = "block";
+  document.getElementById("reloadButton").style.display = "block";
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("submitButton").addEventListener("click", magic);
   document.getElementById("resetButton").addEventListener("click", () => {
+    doReset();
     chrome.tabs.query(params, function (tabs) {
       console.log(tabs);
       chrome.tabs.sendMessage(tabs[0].id, { message: "reset" });
     });
   });
+  document
+    .getElementById("reloadButton")
+    .addEventListener("click", function () {
+      chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+        chrome.tabs.update(
+          tabs[0].id,
+          { url: tabs[0].url },
+          () => window.close()
+        );
+      });
+    });
 });

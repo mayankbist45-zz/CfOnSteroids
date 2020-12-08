@@ -30,6 +30,13 @@ let rating;
 let role;
 let contribution;
 
+function setContribution(ele) {
+  ele.innerHTML = contribution;
+  if (contribution[0] == "+")
+    ele.setAttribute("style", "color:green;font-weight:bold;");
+  else ele.setAttribute("style", "color:gray;font-weight:bold;");
+}
+
 chrome.runtime.onMessage.addListener(gotMessage);
 function gotMessage(message, sender, sendResponse) {
   if (message.message == "reset") {
@@ -40,8 +47,15 @@ function gotMessage(message, sender, sendResponse) {
   rating = message.rating;
   role = message.role;
   contribution = message.contribution;
-  if(contribution.length && Number(contribution[0]) != NaN)
-    contribution = '+' + contribution;
+  handle = handle.toLowerCase();
+  
+  if (
+    contribution.length &&
+    contribution[0] != "-" &&
+    contribution[0] != "+" &&
+    Number(contribution) != 0
+  )
+    contribution = "+" + contribution;
   console.log("contribution", contribution);
 
   chrome.storage.sync.set(
@@ -74,7 +88,7 @@ function trim(curhandle) {
     if (curhandle[i] == " ") id = i + 1;
   }
   curhandle = curhandle.substr(id);
-  return curhandle;
+  return curhandle.toLowerCase();
 }
 
 function changeColorAndRole() {
@@ -86,12 +100,16 @@ function changeColorAndRole() {
     curHandle = trim(curHandle);
     console.log(curHandle);
     if (curHandle == handle) {
+      ele.setAttribute('title', role + ' ' + handle);
       makeThat(ele);
     }
   }
   let childs = document.getElementsByClassName("propertyLinks")[0].children;
   childs[0].children[1].innerHTML = rating;
-  if (contribution != undefined && contribution.length) childs[1].children[1].innerHTML = contribution;
+  if (contribution != undefined && contribution.length) {
+    setContribution(childs[1].children[1]);
+  }
+
   makeThat(childs[0].children[1]);
 
   let tempData = document.getElementsByClassName("main-info");
@@ -116,9 +134,9 @@ function changeColorAndRole() {
       pointer.innerText = rating;
       makeThat(pointer);
 
-      if(contribution != undefined && contribution.length){
-        pointer = userInfo[i].children[1].children[1].children[1].innerHTML = contribution;
-      } 
+      if (contribution != undefined && contribution.length) {
+        setContribution(userInfo[i].children[1].children[1].children[1]);
+      }
     }
   }
 }

@@ -20,9 +20,6 @@
                 "http://codeforces.com/*",
                 "https://codeforces.com/*"
             ],
-            "exclude_globs": [
-                "*://codeforces.com/contests/with/*"
-            ],
             "js": [
                 "script.js"
             ],

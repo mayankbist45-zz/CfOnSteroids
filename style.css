@@ -1,14 +1,22 @@
 * {
   font-family: "Roboto", sans-serif;
-  justify-content: center;
-  text-align: center;
+  /* text-align: center; */
   margin-left: 2px;
   margin-right: 2px;
   margin-bottom: 3px;
-}   
-body {
-    min-width:200px;
+  margin-top: 2px;
 }
-p{
-    font-weight: 500;
+body {
+  min-width: 200px;
+}
+p {
+  font-weight: 500;
+}
+
+#message {
+  display: none;
+}
+
+.btnSet {
+  width: 70%;
 }
