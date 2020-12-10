@@ -1,6 +1,6 @@
 # Cf on Steroids
 
-[![N|Solid](https://i.ibb.co/DLZyhQJ/ico128.png)](https://nodesource.com/products/nsolid)
+[![N|Solid](https://i.ibb.co/DLZyhQJ/ico128.png)](#)
 
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://github.com/mayankbist45/CfOnSteroids/tree/master)
 
@@ -25,4 +25,4 @@ Cf on Steroids uses :
 
 License
 ----
-MIT
+[MIT](https://github.com/mayankbist45/CfOnSteroids/blob/master/LICENSE)
